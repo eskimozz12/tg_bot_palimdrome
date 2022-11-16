@@ -6,12 +6,12 @@ const bot = new TelegramApi(token, { polling: true });
 
 const start = () => {
   bot.on("message", async (msg) => {
-    const text = msg.text;
+    const text = msg.text.toLowerCase();
     const chatId = msg.chat.id;
     checker(text, chatId);
   });
   const checker = async (text, chatId) => {
-    var tmp = text.toLocaleLowerCase().split("").reverse().join("");
+    var tmp = text.split("").reverse().join("");
     if (text === "/start") {
       await bot.sendMessage(
         chatId,
